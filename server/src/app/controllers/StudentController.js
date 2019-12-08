@@ -3,6 +3,15 @@ import * as Yup from 'yup';
 import Student from '../models/Student';
 
 class StudentsController {
+  async index(req, res) {
+    /*
+     * Função que lista todos os alunos cadastrados
+     */
+    const students = await Student.findAll();
+
+    return res.status(200).json({ students });
+  }
+
   async store(req, res) {
     /*
      * Função que cadastra o aluno
@@ -40,7 +49,7 @@ class StudentsController {
      * Função que altera dados do aluno
      */
 
-    const schema = Yup.object().shape({
+    const schemaBody = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string()
         .email()
@@ -50,7 +59,14 @@ class StudentsController {
       height: Yup.number(),
     });
 
-    if (!schema.isValid(req.body)) {
+    const schemaParams = Yup.object().shape({
+      id: Yup.number().required(),
+    });
+
+    if (
+      !(await schemaBody.isValid(req.body)) ||
+      !(await schemaParams.isValid(req.params))
+    ) {
       return res.status(400).json({ error: 'Validation Fails' });
     }
 
@@ -72,6 +88,30 @@ class StudentsController {
     const { name, age, weight, height } = await Student.findByPk(id);
 
     return res.status(200).json({ id, name, email, age, weight, height });
+  }
+
+  async delete(req, res) {
+    /*
+     * Função que remove um aluno a partir do seu id
+     */
+
+    const schema = Yup.object().shape({
+      id: Yup.number(),
+    });
+
+    if (!schema.isValid(req.params)) {
+      return res.status(400).json({ error: 'Validation Fails' });
+    }
+
+    const student = await Student.findByPk(req.params.id);
+
+    if (!student) {
+      return res.status(401).json({ error: 'Could not find this student' });
+    }
+
+    await Student.destroy({ where: { id: req.params.id } });
+
+    return res.status(200).json({ message: 'User successful deleted' });
   }
 }
 
