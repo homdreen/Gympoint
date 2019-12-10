@@ -6,7 +6,8 @@ import Student from '../models/Student';
 import Plan from '../models/Plan';
 import Registration from '../models/Registration';
 
-import Mail from '../../lib/Mail';
+import RegistrationMail from '../jobs/RegistrationMail';
+import Queue from '../../lib/Queue';
 
 class RegistrationController {
   async index(req, res) {
@@ -91,11 +92,7 @@ class RegistrationController {
       attributes: ['id', 'start_date', 'end_date', 'price'],
     });
 
-    await Mail.sendMail({
-      to: `${newRegistration.Student.name} <${newRegistration.Student.email}>`,
-      subject: 'Matrícula realizada com sucesso!',
-      text: 'teste',
-    });
+    await Queue.add(RegistrationMail.key, { newRegistration });
 
     return res.status(200).json(newRegistration);
   }
