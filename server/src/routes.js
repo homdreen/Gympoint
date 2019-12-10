@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import authMiddleware from './app/middlewares/Auth';
 
+import CheckinController from './app/controllers/CheckinController';
+
 import SessionController from './app/controllers/SessionController';
 import StudentController from './app/controllers/StudentController';
 import PlanController from './app/controllers/PlanController';
@@ -11,6 +13,9 @@ const routes = new Router();
 
 routes.get('/', (req, res) => res.json({ message: 'Welcome to Gympoint' }));
 routes.post('/sessions', SessionController.store);
+
+routes.get('/students/:id/checkins', CheckinController.index);
+routes.post('/students/:id/checkins', CheckinController.store);
 
 routes.use(authMiddleware);
 
