@@ -1,5 +1,51 @@
 <strong>
-  Olá, {{ student }}
+  Olá, {{ student }}!
 </strong>
 
-<p>Sua matrícula foi realizada com sucesso</p>
+<p>Parabéns, sua matrícula foi realizada com sucesso!</p>
+<p>Visualize maiores detalhes sobre sua matrícula, aproveite!</p>
+
+<div style="display: flex; justify-content: center; align-items: center">
+  <div style="background: #eee; border: 1px solid #999; min-width: 300px; border-radius: 8px; padding: 20px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Nome: </p> {{ student }}
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Idade: </p> {{ age }} anos
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Altura: </p> {{ height }} m
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Peso: </p> {{ weight }} kg
+    </div>
+
+    <hr>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Plano: </p> {{ plan_name }}
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Duração: </p> {{ duration }} meses
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Início do plano: </p> {{ start_date }}
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Fim do plano: </p> {{ end_date }}
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Preço total: </p> R$ {{ price }}
+    </div>
+
+  </div>
+</div>
+
+<p style="margin-top: 15px;font-weight: bold;">Esperamos que goste dos nossos serviços! Estamos a disposição!</p>
