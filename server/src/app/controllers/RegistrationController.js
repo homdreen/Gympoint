@@ -6,6 +6,8 @@ import Student from '../models/Student';
 import Plan from '../models/Plan';
 import Registration from '../models/Registration';
 
+import Mail from '../../lib/Mail';
+
 class RegistrationController {
   async index(req, res) {
     /*
@@ -87,6 +89,12 @@ class RegistrationController {
         },
       ],
       attributes: ['id', 'start_date', 'end_date', 'price'],
+    });
+
+    await Mail.sendMail({
+      to: `${newRegistration.Student.name} <${newRegistration.Student.email}>`,
+      subject: 'Matrícula realizada com sucesso!',
+      text: 'teste',
     });
 
     return res.status(200).json(newRegistration);
