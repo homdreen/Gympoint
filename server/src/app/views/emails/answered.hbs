@@ -1,0 +1,27 @@
+<strong>
+  Olá, {{ student }}!
+</strong>
+
+<p>Uma solicitação de auxílio sua foi respondida por nossa equipe</p>
+<p>Visualize maiores detalhes sobre a resposta abaixo: </p>
+
+<div style="display: flex; justify-content: center; align-items: center">
+  <div style="background: #eee; border: 1px solid #999; min-width: 400px; border-radius: 8px; padding: 20px;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Questão: </p> {{ question }}
+    </div>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Respondido em: </p> {{ answered_at }}
+    </div>
+
+    <hr>
+
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+      <p style="font-weight: bold;">Resposta: </p> {{ answer }}
+    </div>
+
+  </div>
+</div>
+
+<p style="margin-top: 15px;font-weight: bold;">Esperamos que goste dos nossos serviços! Estamos a disposição!</p>
