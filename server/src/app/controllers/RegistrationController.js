@@ -26,7 +26,7 @@ class RegistrationController {
           attributes: ['title', 'duration', 'price'],
         },
       ],
-      attributes: ['id', 'start_date', 'end_date', 'price'],
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
     });
 
     return res.status(200).json(registrations);
@@ -55,6 +55,14 @@ class RegistrationController {
       return res
         .status(401)
         .json({ error: 'Could not able to find this student!' });
+    }
+
+    const registrationExists = await Registration.findOne({
+      where: { student_id },
+    });
+
+    if (registrationExists) {
+      return res.status(401).json({ error: 'Student already registered' });
     }
 
     const planExists = await Plan.findByPk(plan_id);
@@ -89,7 +97,7 @@ class RegistrationController {
           attributes: ['title', 'duration', 'price'],
         },
       ],
-      attributes: ['id', 'start_date', 'end_date', 'price'],
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
     });
 
     await Queue.add(RegistrationMail.key, { newRegistration });
@@ -172,7 +180,7 @@ class RegistrationController {
           attributes: ['title', 'duration', 'price'],
         },
       ],
-      attributes: ['id', 'start_date', 'end_date', 'price'],
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
     });
 
     return res.status(200).json(updatedRegistration);
