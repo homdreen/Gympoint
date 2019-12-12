@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Student from '../models/Student';
 
@@ -7,8 +8,21 @@ class StudentsController {
     /*
      * Função que lista todos os alunos cadastrados
      */
-    const students = await Student.findAll();
+    if (req.query.q) {
+      const { q: query } = req.query;
 
+      const students = await Student.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${query}%`,
+          },
+        },
+      });
+
+      return res.status(200).json({ students });
+    }
+
+    const students = await Student.findAll();
     return res.status(200).json({ students });
   }
 
