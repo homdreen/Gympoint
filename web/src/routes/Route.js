@@ -11,28 +11,29 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }) {
-  // const { signed } = store.getState().auth;
-
-  const signed = false;
+  const { signed } = store.getState().auth;
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
   }
 
-  if (!signed && isPrivate) {
+  if (signed && !isPrivate) {
     return <Redirect to="/dashboard" />;
   }
 
-  return (
-    <Route
-      {...rest}
-      render={props => (
-        <DefaultLayout>
-          <Component {...props} />
-        </DefaultLayout>
-      )}
-    />
-  );
+  if (signed) {
+    return (
+      <Route
+        {...rest}
+        render={props => (
+          <DefaultLayout>
+            <Component {...props} />
+          </DefaultLayout>
+        )}
+      />
+    );
+  }
+  return <Route {...rest} render={props => <Component {...props} />} />;
 }
 
 RouteWrapper.propTypes = {
