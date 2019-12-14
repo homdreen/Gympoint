@@ -78,6 +78,57 @@ export const StudentsList = styled.div`
   padding: 20px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+`;
+
+export const StudentsTable = styled.table`
+  width: 100%;
+
+  thead th {
+    padding: 12px 0;
+    text-align: left;
+
+    color: #444;
+    font-size: 16px;
+  }
+
+  tbody td {
+    padding: 12px 0;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+
+    color: #666;
+    font-size: 16px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+      font-size: 15px;
+    }
+
+    a:nth-child(1) {
+      color: #4d85ee;
+      transition: color 0.2s;
+
+      &:hover {
+        color: ${darken(0.12, '#4d85ee')};
+      }
+    }
+
+    a:nth-child(2) {
+      color: #de3b3b;
+
+      transition: color 0.2s;
+
+      &:hover {
+        color: ${darken(0.12, '#de3b3b')};
+      }
+    }
+  }
 `;
