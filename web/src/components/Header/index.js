@@ -1,19 +1,48 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import logo from '~/assets/logo.svg';
 import logoGympoint from '~/assets/logoGympoint.svg';
 
-import { Container } from './styles';
+import { Container, Content, LinkElement } from './styles';
+
+import { signOut } from '~/store/modules/auth/actions';
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  function handleSignOut() {
+    dispatch(signOut());
+  }
+
   return (
     <Container>
-      <div>
-        <img src={logo} alt="Logo Gympoint" />
-        <img src={logoGympoint} alt="Logo Gympoint" />
-      </div>
+      <Content>
+        <nav>
+          <div>
+            <img src={logo} alt="Logo Gympoint" />
+            <img src={logoGympoint} alt="Logo Gympoint" />
+          </div>
+
+          <LinkElement to="/dashboard" active="true">
+            ALUNOS
+          </LinkElement>
+
+          <LinkElement to="/plans">PLANOS</LinkElement>
+
+          <LinkElement to="/registrations">MATRÍCULAS</LinkElement>
+
+          <LinkElement to="/help-orders">PEDIDOS DE AUXÍLIO</LinkElement>
+        </nav>
+
+        <aside>
+          <p>{profile.name}</p>
+          <span role="button" tabIndex={0} onClick={handleSignOut}>
+            sair do sistema
+          </span>
+        </aside>
+      </Content>
     </Container>
   );
 }
