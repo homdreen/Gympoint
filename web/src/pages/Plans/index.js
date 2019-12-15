@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lottie } from '@crello/react-lottie';
 import { formatDistanceStrict, addMonths } from 'date-fns';
+import { toast } from 'react-toastify';
 import { pt } from 'date-fns/locale';
 
 import { MdAdd } from 'react-icons/md';
@@ -23,30 +24,42 @@ export default function Plans() {
   const [loading, setLoading] = useState(false);
   const [plans, setPlans] = useState([]);
 
+  async function loadPlans() {
+    setLoading(true);
+    const response = await api.get('/plans');
+
+    const data = response.data.plans.map(plan => ({
+      ...plan,
+      priceFormatted: formatPrice(plan.price),
+      durationFormatted: formatDistanceStrict(
+        addMonths(new Date(), plan.duration),
+        new Date(),
+        { locale: pt }
+      ),
+    }));
+
+    setLoading(false);
+    setPlans(data);
+  }
+
   useEffect(() => {
-    async function loadStudents() {
-      setLoading(true);
-      const response = await api.get('/plans');
-
-      const data = response.data.plans.map(plan => ({
-        ...plan,
-        priceFormatted: formatPrice(plan.price),
-        durationFormatted: formatDistanceStrict(
-          addMonths(new Date(), plan.duration),
-          new Date(),
-          { locale: pt }
-        ),
-      }));
-
-      setLoading(false);
-      setPlans(data);
-    }
-
-    loadStudents();
+    loadPlans();
   }, []);
 
-  function handleRemove(id) {
-    console.log(id);
+  async function handleRemove(id) {
+    const decision = window.confirm(
+      'Você deseja realmente remover este plano?'
+    );
+
+    if (decision === true) {
+      try {
+        await api.delete(`/plans/${id}`);
+        toast.success('Plano removido com sucesso!');
+        loadPlans();
+      } catch (err) {
+        toast.error('Não foi possível remover este plano!');
+      }
+    }
   }
 
   return (
