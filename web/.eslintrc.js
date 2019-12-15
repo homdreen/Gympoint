@@ -34,6 +34,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/click-events-have-key-events": "off",
     "react/no-array-index-key": "off",
+    "no-alert": "off"
   },
   settings: {
     "import/resolver": {

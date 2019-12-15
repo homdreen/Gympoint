@@ -45,6 +45,10 @@ export default function Plans() {
     loadStudents();
   }, []);
 
+  function handleRemove(id) {
+    console.log(id);
+  }
+
   return (
     <Container>
       <Content>
@@ -86,7 +90,12 @@ export default function Plans() {
                       <Link to={{ pathname: '/plans/edit', state: plan }}>
                         editar
                       </Link>
-                      <p>apagar</p>
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(plan.id)}
+                      >
+                        apagar
+                      </button>
                     </div>
                   </td>
                 </tr>
