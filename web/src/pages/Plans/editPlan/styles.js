@@ -59,6 +59,11 @@ export const FormContent = styled(Form)`
   align-items: center;
   justify-content: center;
 
+  span {
+    font-weight: bold;
+    color: #ee4d64;
+  }
+
   div {
     margin-top: 15px;
     width: 100%;
@@ -70,13 +75,14 @@ export const FormContent = styled(Form)`
 
     input {
       font-size: 16px;
-      color: #666;
       height: 45px;
       margin-top: 8px;
+      color: #666;
       width: 100%;
       padding: 5px;
       border: 1px solid #ddd;
       border-radius: 4px;
+
       transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
 
       &:focus {
