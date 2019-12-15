@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MdAdd, MdChevronLeft } from 'react-icons/md';
 import { Input } from '@rocketseat/unform';
@@ -16,9 +17,11 @@ import {
   LastRowItem,
 } from './styles';
 
-export default function newStudent() {
+export default function editStudent({ location }) {
+  const { state: student } = location;
+
   async function handleSubmit({ name, email, age, weight, height }) {
-    const response = await api.post('/students', {
+    const response = await api.put(`/students/${student.id}`, {
       name,
       email,
       age,
@@ -27,11 +30,11 @@ export default function newStudent() {
     });
 
     if (response.data) {
-      toast.success('Aluno criado com sucesso!');
+      toast.success('Aluno editado com sucesso!');
       history.push('/dashboard');
     } else {
       toast.error(
-        'Não foi possível criar este aluno, verifique os dados inseridos!'
+        'Não foi possível editar este aluno, verifique os dados inseridos!'
       );
     }
   }
@@ -39,7 +42,7 @@ export default function newStudent() {
   return (
     <Container>
       <Content>
-        <h1>Cadastro de aluno</h1>
+        <h1>Edição de aluno</h1>
         <aside>
           <Link to="/dashboard">
             <Button color="#CCC">
@@ -54,7 +57,7 @@ export default function newStudent() {
         </aside>
       </Content>
 
-      <FormContent onSubmit={handleSubmit}>
+      <FormContent initialData={student} onSubmit={handleSubmit}>
         <div>
           <p>NOME COMPLETO</p>
           <Input type="text" name="name" placeholder="Nome completo do aluno" />
@@ -97,3 +100,9 @@ export default function newStudent() {
     </Container>
   );
 }
+
+editStudent.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.element,
+  }).isRequired,
+};
