@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lottie } from '@crello/react-lottie';
+import { toast } from 'react-toastify';
 
 import { MdAdd, MdSearch } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
@@ -37,7 +38,13 @@ export default function Dashboard() {
     setLoading(true);
     const response = await api.get(`/students?q=${name}`);
 
-    setStudents(response.data.students);
+    const { students: studentsFromQuery } = response.data;
+
+    if (studentsFromQuery.length === 0) {
+      toast.error('Não foi possível encontrar alunos com estes dados!');
+    } else {
+      setStudents(studentsFromQuery);
+    }
 
     setLoading(false);
   }
@@ -47,10 +54,12 @@ export default function Dashboard() {
       <Content>
         <h1>Gerenciando alunos</h1>
         <aside>
-          <Button type="button">
-            <MdAdd size={20} color="#FFF" />
-            CADASTRAR
-          </Button>
+          <Link to="/dashboard/new">
+            <Button type="button">
+              <MdAdd size={20} color="#FFF" />
+              CADASTRAR
+            </Button>
+          </Link>
 
           <Form onSubmit={handleSubmit}>
             <MdSearch size={20} color="#999" />
@@ -84,8 +93,12 @@ export default function Dashboard() {
                   <td>{student.age}</td>
                   <td>
                     <div>
-                      <Link to="/">editar</Link>
-                      <Link to="/">apagar</Link>
+                      <Link
+                        to={{ pathname: '/dashboard/edit', state: student }}
+                      >
+                        editar
+                      </Link>
+                      <p>apagar</p>
                     </div>
                   </td>
                 </tr>
