@@ -50,14 +50,18 @@ export default function editStudent({ location }) {
               VOLTAR
             </Button>
           </Link>
-          <Button type="submit" color="#EE4D64">
+          <Button form="edit-student" type="submit" color="#EE4D64">
             <MdAdd size={20} color="#FFF" />
             SALVAR
           </Button>
         </aside>
       </Content>
 
-      <FormContent initialData={student} onSubmit={handleSubmit}>
+      <FormContent
+        id="edit-student"
+        initialData={student}
+        onSubmit={handleSubmit}
+      >
         <div>
           <p>NOME COMPLETO</p>
           <Input type="text" name="name" placeholder="Nome completo do aluno" />
@@ -94,8 +98,6 @@ export default function editStudent({ location }) {
             />
           </LastRowItem>
         </LastRow>
-
-        <button type="submit" hidden />
       </FormContent>
     </Container>
   );
