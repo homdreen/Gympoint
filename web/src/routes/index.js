@@ -12,6 +12,9 @@ import HelpOrders from '~/pages/HelpOrders';
 import newStudent from '~/pages/Dashboard/newStudent';
 import editStudent from '~/pages/Dashboard/editStudent';
 
+import newPlan from '~/pages/Plans/newPlan';
+import editPlan from '~/pages/Plans/editPlan';
+
 export default function Routes() {
   return (
     <Switch>
@@ -19,7 +22,9 @@ export default function Routes() {
       <Route path="/dashboard" exact component={Dashboard} isPrivate />
       <Route path="/dashboard/new" component={newStudent} isPrivate />
       <Route path="/dashboard/edit" component={editStudent} isPrivate />
-      <Route path="/plans" component={Plans} isPrivate />
+      <Route path="/plans" exact component={Plans} isPrivate />
+      <Route path="/plans/new" exact component={newPlan} isPrivate />
+      <Route path="/plans/edit" exact component={editPlan} isPrivate />
       <Route path="/registrations" component={Registrations} isPrivate />
       <Route path="/help-orders" component={HelpOrders} isPrivate />
     </Switch>

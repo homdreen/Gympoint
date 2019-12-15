@@ -47,14 +47,14 @@ export default function newStudent() {
               VOLTAR
             </Button>
           </Link>
-          <Button type="submit" color="#EE4D64">
+          <Button form="new-student" type="submit" color="#EE4D64">
             <MdAdd size={20} color="#FFF" />
             SALVAR
           </Button>
         </aside>
       </Content>
 
-      <FormContent onSubmit={handleSubmit}>
+      <FormContent id="new-student" onSubmit={handleSubmit}>
         <div>
           <p>NOME COMPLETO</p>
           <Input type="text" name="name" placeholder="Nome completo do aluno" />
@@ -91,8 +91,6 @@ export default function newStudent() {
             />
           </LastRowItem>
         </LastRow>
-
-        <button type="submit" hidden />
       </FormContent>
     </Container>
   );

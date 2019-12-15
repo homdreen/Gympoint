@@ -27,11 +27,11 @@ export default function newStudent() {
     });
 
     if (response.data) {
-      toast.success('Aluno criado com sucesso!');
-      history.push('/dashboard');
+      toast.success('Plano criado com sucesso!');
+      history.push('/plans');
     } else {
       toast.error(
-        'Não foi possível criar este aluno, verifique os dados inseridos!'
+        'Não foi possível criar este plano, verifique os dados inseridos!'
       );
     }
   }
@@ -41,7 +41,7 @@ export default function newStudent() {
       <Content>
         <h1>Cadastro de aluno</h1>
         <aside>
-          <Link to="/dashboard">
+          <Link to="/plans">
             <Button color="#CCC">
               <MdChevronLeft size={20} color="#FFF" />
               VOLTAR
@@ -56,37 +56,37 @@ export default function newStudent() {
 
       <FormContent onSubmit={handleSubmit}>
         <div>
-          <p>NOME COMPLETO</p>
-          <Input type="text" name="name" placeholder="Nome completo do aluno" />
-        </div>
-
-        <div>
-          <p>ENDEREÇO DE E-MAIL</p>
-          <Input type="email" name="email" placeholder="E-mail do aluno" />
+          <p>TÍTULO DO PLANO</p>
+          <Input type="text" name="title" placeholder="Título do novo plano" />
         </div>
 
         <LastRow>
           <LastRowItem>
-            <p>IDADE</p>
-            <Input type="number" name="age" placeholder="Idade do aluno" />
-          </LastRowItem>
-
-          <LastRowItem>
-            <p>PESO (em kg)</p>
+            <p>DURAÇÃO (em meses)</p>
             <Input
               type="number"
-              step="0.01"
-              name="weight"
-              placeholder="Peso do aluno"
+              name="duration"
+              placeholder="Duração do plano"
             />
           </LastRowItem>
 
           <LastRowItem>
-            <p>ALTURA</p>
+            <p>PREÇO MENSAL</p>
+            <Input
+              type="number"
+              step="0.01"
+              name="price"
+              placeholder="Preço do plano"
+            />
+          </LastRowItem>
+
+          <LastRowItem>
+            <p>PREÇO TOTAL</p>
             <Input
               type="number"
               step="0.01"
               name="height"
+              disabled
               placeholder="Altura do aluno"
             />
           </LastRowItem>

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lottie } from '@crello/react-lottie';
+import { formatDistanceStrict, addMonths } from 'date-fns';
+import { pt } from 'date-fns/locale';
 import { toast } from 'react-toastify';
 
 import { MdAdd, MdSearch } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
 
+import { formatPrice } from '~/util/format_price';
 import api from '~/services/api';
 
 import {
@@ -27,8 +30,18 @@ export default function Plans() {
       setLoading(true);
       const response = await api.get('/plans');
 
+      const data = response.data.plans.map(plan => ({
+        ...plan,
+        priceFormatted: formatPrice(plan.price),
+        durationFormatted: formatDistanceStrict(
+          addMonths(new Date(), plan.duration),
+          new Date(),
+          { locale: pt }
+        ),
+      }));
+
       setLoading(false);
-      setPlans(response.data.plans);
+      setPlans(data);
     }
 
     loadStudents();
@@ -39,7 +52,7 @@ export default function Plans() {
       <Content>
         <h1>Gerenciando Planos</h1>
         <aside>
-          <Link to="/dashboard">
+          <Link to="/plans/new">
             <Button type="button">
               <MdAdd size={20} color="#FFF" />
               CADASTRAR
@@ -68,11 +81,11 @@ export default function Plans() {
               {plans.map((plan, i) => (
                 <tr key={i}>
                   <td>{plan.title}</td>
-                  <td>{plan.duration}</td>
-                  <td>R$ {plan.price}</td>
+                  <td>{plan.durationFormatted}</td>
+                  <td>{plan.priceFormatted}</td>
                   <td>
                     <div>
-                      <Link to={{ pathname: '/dashboard/edit', state: plan }}>
+                      <Link to={{ pathname: '/plans/edit', state: plan }}>
                         editar
                       </Link>
                       <p>apagar</p>
