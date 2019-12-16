@@ -50,12 +50,12 @@ export default function Registrations() {
 
   async function handleRemove(id) {
     const decision = window.confirm(
-      'Você deseja realmente remover este aluno?'
+      'Você deseja realmente remover esta matrícula?'
     );
 
     if (decision === true) {
       try {
-        await api.delete(`/students/${id}`);
+        await api.delete(`/registrations/${id}`);
         toast.success('Matrícula removida com sucesso!');
         loadRegistrations();
       } catch (err) {
@@ -97,14 +97,14 @@ export default function Registrations() {
               </tr>
             </thead>
             <tbody>
-              {registrations.map((student, i) => (
+              {registrations.map((registration, i) => (
                 <tr key={i}>
-                  <td>{student.Student.name}</td>
-                  <td>{student.Plan.title}</td>
-                  <td>{student.startDateFormatted}</td>
-                  <td>{student.endDateFormatted}</td>
+                  <td>{registration.Student.name}</td>
+                  <td>{registration.Plan.title}</td>
+                  <td>{registration.startDateFormatted}</td>
+                  <td>{registration.endDateFormatted}</td>
                   <td>
-                    {student.active ? (
+                    {registration.active ? (
                       <MdCheckCircle size={20} color="#42cb59" />
                     ) : (
                       <MdCheckCircle size={20} color="#ddd" />
@@ -113,13 +113,16 @@ export default function Registrations() {
                   <td>
                     <div>
                       <Link
-                        to={{ pathname: '/dashboard/edit', state: student }}
+                        to={{
+                          pathname: '/registrations/edit',
+                          state: registration,
+                        }}
                       >
                         editar
                       </Link>
                       <button
                         type="button"
-                        onClick={() => handleRemove(student.id)}
+                        onClick={() => handleRemove(registration.id)}
                       >
                         apagar
                       </button>

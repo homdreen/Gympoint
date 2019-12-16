@@ -124,7 +124,5 @@ export default function editStudent({ location }) {
 }
 
 editStudent.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.element,
-  }).isRequired,
+  location: PropTypes.shape().isRequired,
 };
