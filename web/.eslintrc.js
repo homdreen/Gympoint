@@ -33,7 +33,8 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/click-events-have-key-events": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "no-alert": "off"
   },
   settings: {
     "import/resolver": {

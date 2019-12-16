@@ -21,16 +21,15 @@ import loadingAnimation from '~/assets/loading.json';
 export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [students, setStudents] = useState([]);
+  async function loadStudents() {
+    setLoading(true);
+    const response = await api.get('/students');
+
+    setLoading(false);
+    setStudents(response.data.students);
+  }
 
   useEffect(() => {
-    async function loadStudents() {
-      setLoading(true);
-      const response = await api.get('/students');
-
-      setLoading(false);
-      setStudents(response.data.students);
-    }
-
     loadStudents();
   }, []);
 
@@ -47,6 +46,22 @@ export default function Dashboard() {
     }
 
     setLoading(false);
+  }
+
+  async function handleRemove(id) {
+    const decision = window.confirm(
+      'Você deseja realmente remover este aluno?'
+    );
+
+    if (decision === true) {
+      try {
+        await api.delete(`/students/${id}`);
+        toast.success('Aluno removido com sucesso!');
+        loadStudents();
+      } catch (err) {
+        toast.error('Não foi possível remover este aluno!');
+      }
+    }
   }
 
   return (
@@ -98,7 +113,12 @@ export default function Dashboard() {
                       >
                         editar
                       </Link>
-                      <p>apagar</p>
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(student.id)}
+                      >
+                        apagar
+                      </button>
                     </div>
                   </td>
                 </tr>

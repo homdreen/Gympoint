@@ -59,6 +59,11 @@ export const FormContent = styled(Form)`
   align-items: center;
   justify-content: center;
 
+  span {
+    font-weight: bold;
+    color: #ee4d64;
+  }
+
   div {
     margin-top: 15px;
     width: 100%;

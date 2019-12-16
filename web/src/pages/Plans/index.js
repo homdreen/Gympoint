@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Lottie } from '@crello/react-lottie';
 import { formatDistanceStrict, addMonths } from 'date-fns';
-import { pt } from 'date-fns/locale';
 import { toast } from 'react-toastify';
+import { pt } from 'date-fns/locale';
 
-import { MdAdd, MdSearch } from 'react-icons/md';
-import { Form, Input } from '@rocketseat/unform';
+import { MdAdd } from 'react-icons/md';
 
 import { formatPrice } from '~/util/format_price';
 import api from '~/services/api';
@@ -25,32 +24,48 @@ export default function Plans() {
   const [loading, setLoading] = useState(false);
   const [plans, setPlans] = useState([]);
 
+  async function loadPlans() {
+    setLoading(true);
+    const response = await api.get('/plans');
+
+    const data = response.data.plans.map(plan => ({
+      ...plan,
+      priceFormatted: formatPrice(plan.price),
+      durationFormatted: formatDistanceStrict(
+        addMonths(new Date(), plan.duration),
+        new Date(),
+        { locale: pt }
+      ),
+    }));
+
+    setLoading(false);
+    setPlans(data);
+  }
+
   useEffect(() => {
-    async function loadStudents() {
-      setLoading(true);
-      const response = await api.get('/plans');
-
-      const data = response.data.plans.map(plan => ({
-        ...plan,
-        priceFormatted: formatPrice(plan.price),
-        durationFormatted: formatDistanceStrict(
-          addMonths(new Date(), plan.duration),
-          new Date(),
-          { locale: pt }
-        ),
-      }));
-
-      setLoading(false);
-      setPlans(data);
-    }
-
-    loadStudents();
+    loadPlans();
   }, []);
+
+  async function handleRemove(id) {
+    const decision = window.confirm(
+      'Você deseja realmente remover este plano?'
+    );
+
+    if (decision === true) {
+      try {
+        await api.delete(`/plans/${id}`);
+        toast.success('Plano removido com sucesso!');
+        loadPlans();
+      } catch (err) {
+        toast.error('Não foi possível remover este plano!');
+      }
+    }
+  }
 
   return (
     <Container>
       <Content>
-        <h1>Gerenciando Planos</h1>
+        <h1>Gerenciando planos</h1>
         <aside>
           <Link to="/plans/new">
             <Button type="button">
@@ -88,7 +103,12 @@ export default function Plans() {
                       <Link to={{ pathname: '/plans/edit', state: plan }}>
                         editar
                       </Link>
-                      <p>apagar</p>
+                      <button
+                        type="button"
+                        onClick={() => handleRemove(plan.id)}
+                      >
+                        apagar
+                      </button>
                     </div>
                   </td>
                 </tr>

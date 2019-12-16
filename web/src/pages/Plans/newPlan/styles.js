@@ -59,6 +59,11 @@ export const FormContent = styled(Form)`
   align-items: center;
   justify-content: center;
 
+  span {
+    font-weight: bold;
+    color: #ee4d64;
+  }
+
   div {
     margin-top: 15px;
     width: 100%;
@@ -77,6 +82,12 @@ export const FormContent = styled(Form)`
       padding: 5px;
       border: 1px solid #ddd;
       border-radius: 4px;
+
+      transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+      &:focus {
+        border: 2px solid #ee4d64;
+      }
     }
   }
 `;

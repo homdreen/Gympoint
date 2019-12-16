@@ -121,7 +121,9 @@ export const StudentsTable = styled.table`
       }
     }
 
-    p {
+    button {
+      background: none;
+      border: 0;
       color: #de3b3b;
       cursor: pointer;
       transition: color 0.2s;

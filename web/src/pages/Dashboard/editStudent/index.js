@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MdAdd, MdChevronLeft } from 'react-icons/md';
@@ -16,6 +17,24 @@ import {
   LastRow,
   LastRowItem,
 } from './styles';
+
+const schema = Yup.object().shape({
+  name: Yup.string('Necessário um texto válido').required(
+    'Este campo é obrigatório'
+  ),
+  email: Yup.string('Necessário um e-mail válido')
+    .email('Necessário um e-mail válido')
+    .required('Este campo é obrigatório'),
+  age: Yup.string('Necessário um número válido').required(
+    'Este campo é obrigatório'
+  ),
+  weight: Yup.string('Necessário um peso válido').required(
+    'Este campo é obrigatório'
+  ),
+  height: Yup.string('Necessário uma altura válido').required(
+    'Este campo é obrigatório'
+  ),
+});
 
 export default function editStudent({ location }) {
   const { state: student } = location;
@@ -59,6 +78,7 @@ export default function editStudent({ location }) {
 
       <FormContent
         id="edit-student"
+        schema={schema}
         initialData={student}
         onSubmit={handleSubmit}
       >
