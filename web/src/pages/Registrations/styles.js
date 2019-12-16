@@ -71,7 +71,7 @@ export const Button = styled.button`
   }
 `;
 
-export const PlansList = styled.div`
+export const RegistrationsList = styled.div`
   margin: 30px auto;
   background: #fff;
   border-radius: 4px;
@@ -82,7 +82,7 @@ export const PlansList = styled.div`
   justify-content: center;
 `;
 
-export const PlansTable = styled.table`
+export const RegistrationsTable = styled.table`
   width: 100%;
 
   thead th {

@@ -10,13 +10,7 @@ import { MdAdd } from 'react-icons/md';
 import { formatPrice } from '~/util/format_price';
 import api from '~/services/api';
 
-import {
-  Container,
-  Content,
-  Button,
-  StudentsList,
-  StudentsTable,
-} from './styles';
+import { Container, Content, Button, PlansList, PlansTable } from './styles';
 
 import loadingAnimation from '~/assets/loading.json';
 
@@ -76,14 +70,14 @@ export default function Plans() {
         </aside>
       </Content>
 
-      <StudentsList>
+      <PlansList>
         {loading ? (
           <Lottie
             height={200}
             config={{ animationData: loadingAnimation, loop: true }}
           />
         ) : (
-          <StudentsTable>
+          <PlansTable>
             <thead>
               <tr>
                 <th>TÍTULO</th>
@@ -114,9 +108,9 @@ export default function Plans() {
                 </tr>
               ))}
             </tbody>
-          </StudentsTable>
+          </PlansTable>
         )}
-      </StudentsList>
+      </PlansList>
     </Container>
   );
 }
