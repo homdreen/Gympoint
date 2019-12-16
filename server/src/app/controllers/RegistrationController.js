@@ -19,11 +19,11 @@ class RegistrationController {
       include: [
         {
           model: Student,
-          attributes: ['name', 'email', 'age', 'weight', 'height'],
+          attributes: ['id', 'name', 'email', 'age', 'weight', 'height'],
         },
         {
           model: Plan,
-          attributes: ['title', 'duration', 'price'],
+          attributes: ['id', 'title', 'duration', 'price'],
         },
       ],
       attributes: ['id', 'start_date', 'end_date', 'price', 'active'],

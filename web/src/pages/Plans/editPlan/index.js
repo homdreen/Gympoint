@@ -133,7 +133,5 @@ export default function EditPlan({ location }) {
 }
 
 EditPlan.propTypes = {
-  location: PropTypes.shape({
-    state: PropTypes.element,
-  }).isRequired,
+  location: PropTypes.shape().isRequired,
 };
