@@ -65,7 +65,7 @@ export default function Plans() {
   return (
     <Container>
       <Content>
-        <h1>Gerenciando Planos</h1>
+        <h1>Gerenciando planos</h1>
         <aside>
           <Link to="/plans/new">
             <Button type="button">

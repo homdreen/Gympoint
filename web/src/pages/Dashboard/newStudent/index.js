@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { MdAdd, MdChevronLeft } from 'react-icons/md';
 import { Input } from '@rocketseat/unform';
@@ -15,6 +16,24 @@ import {
   LastRow,
   LastRowItem,
 } from './styles';
+
+const schema = Yup.object().shape({
+  name: Yup.string('Necessário um texto válido').required(
+    'Este campo é obrigatório'
+  ),
+  email: Yup.string('Necessário um e-mail válido')
+    .email('Necessário um e-mail válido')
+    .required('Este campo é obrigatório'),
+  age: Yup.string('Necessário um número válido').required(
+    'Este campo é obrigatório'
+  ),
+  weight: Yup.string('Necessário um peso válido').required(
+    'Este campo é obrigatório'
+  ),
+  height: Yup.string('Necessário uma altura válido').required(
+    'Este campo é obrigatório'
+  ),
+});
 
 export default function newStudent() {
   async function handleSubmit({ name, email, age, weight, height }) {
@@ -54,7 +73,7 @@ export default function newStudent() {
         </aside>
       </Content>
 
-      <FormContent id="new-student" onSubmit={handleSubmit}>
+      <FormContent id="new-student" schema={schema} onSubmit={handleSubmit}>
         <div>
           <p>NOME COMPLETO</p>
           <Input type="text" name="name" placeholder="Nome completo do aluno" />
