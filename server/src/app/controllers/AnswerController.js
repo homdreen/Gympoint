@@ -19,6 +19,12 @@ class AnswerController {
           [Op.eq]: null,
         },
       },
+      include: [
+        {
+          model: Student,
+          attributes: ['id', 'name', 'email'],
+        },
+      ],
     });
 
     return res.status(200).json(helpOrders);
