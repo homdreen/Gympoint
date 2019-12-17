@@ -77,7 +77,7 @@ export default function NewRegistration() {
   function handleChange(e) {
     const { value } = e.target;
 
-    plans.map(plan => {
+    plans.forEach(plan => {
       if (plan.id === Number(value)) {
         setComputedDuration(plan.duration);
         setComputedPrice(plan.price);
