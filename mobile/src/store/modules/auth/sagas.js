@@ -9,7 +9,8 @@ export function* signIn({ payload }) {
   try {
     const { id } = payload;
 
-    const response = yield call(api.post, '/login-student', { id });
+    const response = yield call(api.post, '/login-students', { id });
+    console.tron.log(response.data);
 
     const { name } = response.data;
 
@@ -19,7 +20,7 @@ export function* signIn({ payload }) {
   } catch (err) {
     Alert.alert('Falha!', 'Não foi possível encontrar um aluno com este ID!');
 
-    yield call(signFailure());
+    yield put(signFailure());
   }
 }
 
