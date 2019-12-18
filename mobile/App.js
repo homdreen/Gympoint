@@ -1,5 +1,5 @@
 import React from 'react';
-import AppMain from '~/App';
+import AppMain from './src';
 
 export default function App() {
   return <AppMain />;

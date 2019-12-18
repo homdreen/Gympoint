@@ -16,3 +16,6 @@ web-report/
 # expo
 .expo/
 .expo-shared
+
+# yarn.lock
+yarn.lock
