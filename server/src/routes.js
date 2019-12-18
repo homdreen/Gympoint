@@ -10,11 +10,13 @@ import PlanController from './app/controllers/PlanController';
 import RegistrationController from './app/controllers/RegistrationController';
 import QuestionsController from './app/controllers/QuestionsController';
 import AnswerController from './app/controllers/AnswerController';
+import LoginStudentController from './app/controllers/LoginStudentController';
 
 const routes = new Router();
 
 routes.get('/', (req, res) => res.json({ message: 'Welcome to Gympoint' }));
 routes.post('/sessions', SessionController.store);
+routes.post('/login-students', LoginStudentController.index);
 
 routes.get('/students/:id/checkins', CheckinController.index);
 routes.post('/students/:id/checkins', CheckinController.store);
