@@ -16,7 +16,6 @@ const routes = new Router();
 
 routes.get('/', (req, res) => res.json({ message: 'Welcome to Gympoint' }));
 routes.post('/sessions', SessionController.store);
-
 routes.post('/login-students', LoginStudentController.index);
 
 routes.get('/students/:id/checkins', CheckinController.index);
