@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Alert, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { formatDistance, parseISO } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import { useSelector } from 'react-redux';
@@ -21,7 +22,9 @@ import {
   HelpOrderAnsweredText,
 } from './styles';
 
-export default function HelpOrder() {
+export default function HelpOrders({ navigation }) {
+  const { navigate } = navigation;
+
   const [helpOrders, setHelpOrders] = useState([]);
   const [loading, setLoading] = useState(false);
   const studentId = useSelector(state => state.user.id);
@@ -45,8 +48,6 @@ export default function HelpOrder() {
         ),
       }));
 
-      console.tron.log(data);
-
       setHelpOrders(data);
     } catch (err) {
       Alert.alert('Falha!', 'Não foi possível recuperar os pedidos de auxílio');
@@ -54,6 +55,10 @@ export default function HelpOrder() {
 
     setLoading(false);
   }, [studentId]);
+
+  function handleNavigate() {
+    navigate('HelpOrderNew', { onGoBack: () => loadHelpOrders() });
+  }
 
   useEffect(() => {
     loadHelpOrders();
@@ -64,7 +69,7 @@ export default function HelpOrder() {
       <Header />
 
       <Container>
-        <NewHelpOrderButton loading={loading}>
+        <NewHelpOrderButton loading={loading} onPress={handleNavigate}>
           Novo pedido de auxílio
         </NewHelpOrderButton>
 
@@ -108,9 +113,8 @@ export default function HelpOrder() {
   );
 }
 
-HelpOrder.navigationOptions = {
-  tabBarLabel: 'Pedir ajuda',
-  tabBarIcon: ({ tintColor }) => (
-    <Icon name="live-help" size={20} color={tintColor} />
-  ),
+HelpOrders.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };

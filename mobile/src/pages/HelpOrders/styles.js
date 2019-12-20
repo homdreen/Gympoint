@@ -48,10 +48,12 @@ export const HelpOrderAnsweredText = styled.Text`
 `;
 
 export const HelpOrderDate = styled.Text`
-  color: #666;
+  width: 60%;
+
   text-align: right;
   font-size: 14px;
   line-height: 17px;
+  color: #666;
 `;
 
 export const Question = styled.TouchableOpacity`
