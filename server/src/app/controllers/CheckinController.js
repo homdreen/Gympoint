@@ -33,6 +33,7 @@ class CheckinController {
       where: {
         student_id: id,
       },
+      order: [['createdAt', 'DESC']],
     });
 
     return res.status(200).json(checkins);
