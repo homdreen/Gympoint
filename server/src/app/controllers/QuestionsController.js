@@ -27,7 +27,10 @@ class QuestionsController {
         .json({ error: 'Could not be able find this student' });
     }
 
-    const helpOrders = await HelpOrders.findAll({ where: { student_id: id } });
+    const helpOrders = await HelpOrders.findAll({
+      where: { student_id: id },
+      order: [['createdAt', 'DESC'], ['answer', 'DESC']],
+    });
 
     return res.status(200).json(helpOrders);
   }
