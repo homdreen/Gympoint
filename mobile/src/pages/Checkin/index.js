@@ -47,7 +47,7 @@ export default function Checkin() {
 
   useEffect(() => {
     loadCheckins();
-  }, [loadCheckins, studentId]);
+  }, [loadCheckins]);
 
   async function handleCheckin() {
     try {
@@ -56,7 +56,7 @@ export default function Checkin() {
       loadCheckins();
     } catch (err) {
       Alert.alert(
-        'Falha',
+        'Falha!',
         'Você só pode realizar 5 check-ins dentro de 7 dias.'
       );
     }
