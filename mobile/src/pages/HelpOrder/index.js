@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Alert, Text } from 'react-native';
+import { formatDistance, parseISO } from 'date-fns';
+import { pt } from 'date-fns/locale';
 import { useSelector } from 'react-redux';
 
 import Icon from '@expo/vector-icons/MaterialIcons';
@@ -13,6 +15,7 @@ import {
   HelpOrdersList,
   HelpOrderItem,
   HelpOrderAnswered,
+  HelpOrderDate,
   ItemHeader,
   Question,
   HelpOrderAnsweredText,
@@ -31,7 +34,18 @@ export default function HelpOrder() {
 
       const data = response.data.map(helpOrder => ({
         ...helpOrder,
+        answered: !!helpOrder.answer,
+        requestWhenFormatted: formatDistance(
+          parseISO(helpOrder.createdAt),
+          new Date(),
+          {
+            addSuffix: true,
+            locale: pt,
+          }
+        ),
       }));
+
+      console.tron.log(data);
 
       setHelpOrders(data);
     } catch (err) {
@@ -58,17 +72,34 @@ export default function HelpOrder() {
           data={helpOrders}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <HelpOrderItem>
+            <HelpOrderItem
+              onPress={() => {
+                console.tron.log('clicoou, que delciia');
+              }}
+            >
               <ItemHeader>
                 <HelpOrderAnswered>
-                  <Icon name="check-circle" size={20} color="#000" />
-                  <HelpOrderAnsweredText answered={!!item.answer}>
-                    Respondido
-                  </HelpOrderAnsweredText>
+                  {item.answered ? (
+                    <>
+                      <Icon name="check-circle" size={16} color="#42cb59" />
+                      <HelpOrderAnsweredText answered={item.answered}>
+                        Respondido
+                      </HelpOrderAnsweredText>
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="check-circle" size={16} color="#999" />
+                      <HelpOrderAnsweredText answered={item.answered}>
+                        Sem resposta
+                      </HelpOrderAnsweredText>
+                    </>
+                  )}
                 </HelpOrderAnswered>
-                <Text>há 2 dias</Text>
+                <HelpOrderDate>{item.requestWhenFormatted}</HelpOrderDate>
               </ItemHeader>
-              <Question>Isso é daora</Question>
+              <Question onPress={() => console.tron.log('clicou, que delicia')}>
+                <Text>{item.question}</Text>
+              </Question>
             </HelpOrderItem>
           )}
         />
