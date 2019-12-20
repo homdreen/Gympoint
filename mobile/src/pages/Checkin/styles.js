@@ -27,7 +27,7 @@ export const CheckinItem = styled.View`
   padding: 20px 15px;
   border-radius: 4px;
   background: #fff;
-  border: 1px solid #444;
+  border: 1px solid #ddd;
   margin-bottom: 10px;
 `;
 
