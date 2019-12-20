@@ -48,8 +48,6 @@ export default function HelpOrders({ navigation }) {
         ),
       }));
 
-      console.tron.log(data);
-
       setHelpOrders(data);
     } catch (err) {
       Alert.alert('Falha!', 'Não foi possível recuperar os pedidos de auxílio');
