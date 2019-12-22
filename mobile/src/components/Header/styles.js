@@ -12,6 +12,7 @@ export const Container = styled.View`
   justify-content: center;
   border-bottom-width: 1px;
   border-bottom-color: #ddd;
+  background: #fff;
 `;
 
 export const Image = styled.Image`

@@ -9,7 +9,9 @@ import Icon from '@expo/vector-icons/MaterialIcons';
 
 import api from '~/services/api';
 
+import Background from '~/components/Background';
 import Header from '~/components/Header';
+
 import {
   Container,
   NewHelpOrderButton,
@@ -65,7 +67,7 @@ export default function HelpOrders({ navigation }) {
   }, [loadHelpOrders]);
 
   return (
-    <>
+    <Background>
       <Header />
 
       <Container>
@@ -77,11 +79,7 @@ export default function HelpOrders({ navigation }) {
           data={helpOrders}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <HelpOrderItem
-              onPress={() => {
-                console.tron.log('clicoou, que delciia');
-              }}
-            >
+            <HelpOrderItem>
               <ItemHeader>
                 <HelpOrderAnswered>
                   {item.answered ? (
@@ -102,14 +100,18 @@ export default function HelpOrders({ navigation }) {
                 </HelpOrderAnswered>
                 <HelpOrderDate>{item.requestWhenFormatted}</HelpOrderDate>
               </ItemHeader>
-              <Question onPress={() => console.tron.log('clicou, que delicia')}>
+              <Question
+                onPress={() => {
+                  navigate('HelpOrderExpanded', { helpOrder: item });
+                }}
+              >
                 <Text>{item.question}</Text>
               </Question>
             </HelpOrderItem>
           )}
         />
       </Container>
-    </>
+    </Background>
   );
 }
 

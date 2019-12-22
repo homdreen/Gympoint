@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import Icon from '@expo/vector-icons/MaterialIcons';
 
+import Background from '~/components/Background';
 import Header from '~/components/Header';
 
 import api from '~/services/api';
@@ -63,7 +64,7 @@ export default function Checkin() {
   }
 
   return (
-    <>
+    <Background>
       <Header />
 
       <Container>
@@ -82,7 +83,7 @@ export default function Checkin() {
           )}
         />
       </Container>
-    </>
+    </Background>
   );
 }
 

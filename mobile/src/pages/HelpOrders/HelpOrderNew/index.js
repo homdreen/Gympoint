@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Alert } from 'react-native';
+import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
+import Background from '~/components/Background';
 import Header from '~/components/Header';
 import Button from '~/components/Button';
 
@@ -44,7 +46,7 @@ export default function HelpOrderNew({ navigation }) {
   }
 
   return (
-    <>
+    <Background>
       <Header />
 
       <Container>
@@ -60,6 +62,12 @@ export default function HelpOrderNew({ navigation }) {
           Enviar Pedido
         </Button>
       </Container>
-    </>
+    </Background>
   );
 }
+
+HelpOrderNew.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};

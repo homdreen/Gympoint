@@ -12,6 +12,7 @@ export const TextAreaContainer = styled.View`
   margin-bottom: 20px;
   height: 300px;
   padding: 20px;
+  background: #fff;
 `;
 
 export const TextArea = styled.TextInput.attrs({

@@ -11,6 +11,7 @@ import Checkin from '~/pages/Checkin';
 import HelpOrders from '~/pages/HelpOrders';
 
 import HelpOrderNew from '~/pages/HelpOrders/HelpOrderNew';
+import HelpOrderExpanded from '~/pages/HelpOrders/HelpOrderExpanded';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -27,6 +28,7 @@ export default (signedIn = false) =>
                 {
                   HelpOrders,
                   HelpOrderNew,
+                  HelpOrderExpanded,
                 },
                 {
                   headerMode: 'none',
