@@ -110,8 +110,8 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {helpOrders.map(helpOrder => (
-                <tr>
+              {helpOrders.map((helpOrder, i) => (
+                <tr key={i}>
                   <td>{helpOrder.Student.name}</td>
                   <td>
                     <button

@@ -35,6 +35,14 @@ export const Box = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
+    span {
+      font-weight: bold;
+      text-align: left;
+      color: #ee4d64;
+      margin-top: -15px;
+      margin-bottom: 5px;
+    }
+
     input {
       background: #fff;
       border: 1px solid #999999;
