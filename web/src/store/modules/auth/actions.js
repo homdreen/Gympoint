@@ -6,7 +6,6 @@ export function signInRequest(email, password) {
 }
 
 export function signInSuccess(token, user) {
-  console.tron.log('entrou no action');
   return {
     type: '@auth/SIGN_IN_SUCCESS',
     payload: { token, user },

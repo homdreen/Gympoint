@@ -17,6 +17,7 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
+    toast.success('Seja bem vindo à página adminstrativa do Gympoint');
     history.push('/dashboard');
   } catch (err) {
     toast.error('Falha ao autenticar, verifique seus dados');
