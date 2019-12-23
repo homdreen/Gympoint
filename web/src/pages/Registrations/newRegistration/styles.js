@@ -91,6 +91,12 @@ export const FormContent = styled(Form)`
       }
     }
 
+    input[type='date']::-webkit-inner-spin-button,
+    input[type='date']::-webkit-clear-button,
+    input[type='date']::-moz-clear {
+      display: none;
+    }
+
     select {
       background: #fff;
     }
