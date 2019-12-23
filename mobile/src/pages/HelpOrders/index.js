@@ -29,6 +29,7 @@ export default function HelpOrders({ navigation }) {
 
   const [helpOrders, setHelpOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const studentId = useSelector(state => state.user.id);
 
   const loadHelpOrders = useCallback(async () => {
@@ -62,6 +63,14 @@ export default function HelpOrders({ navigation }) {
     navigate('HelpOrderNew', { onGoBack: () => loadHelpOrders() });
   }
 
+  function handleRefresh() {
+    setRefreshing(true);
+
+    loadHelpOrders();
+
+    setRefreshing(false);
+  }
+
   useEffect(() => {
     loadHelpOrders();
   }, [loadHelpOrders]);
@@ -78,6 +87,8 @@ export default function HelpOrders({ navigation }) {
         <HelpOrdersList
           data={helpOrders}
           keyExtractor={item => String(item.id)}
+          onRefresh={handleRefresh}
+          refreshing={refreshing}
           renderItem={({ item }) => (
             <HelpOrderItem>
               <ItemHeader>

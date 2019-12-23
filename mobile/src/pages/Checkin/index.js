@@ -24,6 +24,7 @@ import {
 export default function Checkin() {
   const [checkins, setCheckins] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const studentId = useSelector(state => state.user.id);
 
   const loadCheckins = useCallback(async () => {
@@ -45,6 +46,14 @@ export default function Checkin() {
     }
     setLoading(false);
   }, [studentId]);
+
+  function handleRefresh() {
+    setRefreshing(true);
+
+    loadCheckins();
+
+    setRefreshing(false);
+  }
 
   useEffect(() => {
     loadCheckins();
@@ -75,6 +84,8 @@ export default function Checkin() {
         <CheckinList
           data={checkins}
           keyExtractor={item => String(item.id)}
+          onRefresh={handleRefresh}
+          refreshing={refreshing}
           renderItem={({ item, index }) => (
             <CheckinItem>
               <CheckinText>Check-in #{index}</CheckinText>
