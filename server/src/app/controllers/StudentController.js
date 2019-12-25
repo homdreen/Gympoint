@@ -26,7 +26,7 @@ class StudentsController {
     const cached = await Cache.get('students');
 
     if (cached) {
-      return res.status(200).json(cached);
+      return res.status(200).json({ students: cached });
     }
 
     const students = await Student.findAll();
@@ -93,6 +93,8 @@ class StudentsController {
     }
 
     await Student.destroy({ where: { id: req.params.id } });
+
+    await Cache.invalidate('students');
 
     return res.status(200).json({ message: 'User successful deleted' });
   }
