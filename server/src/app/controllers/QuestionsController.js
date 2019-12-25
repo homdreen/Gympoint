@@ -1,5 +1,3 @@
-import * as Yup from 'yup';
-
 import Student from '../models/Student';
 import HelpOrders from '../models/HelpOrders';
 
@@ -8,14 +6,6 @@ class QuestionsController {
     /*
      * Função que lista auxilios de um aluno
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (!(await schema.isValid(req.params))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
 
@@ -39,21 +29,6 @@ class QuestionsController {
     /*
      * Função que cria um novo auxilio
      */
-
-    const schemaBody = Yup.object().shape({
-      question: Yup.string().required(),
-    });
-
-    const schemaParams = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (
-      !(await schemaBody.isValid(req.body)) ||
-      !(await schemaParams.isValid(req.params))
-    ) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
 

@@ -1,5 +1,3 @@
-import * as Yup from 'yup';
-
 import Plan from '../models/Plan';
 
 class PlanController {
@@ -18,16 +16,6 @@ class PlanController {
      * Função que registra um novo plano
      */
 
-    const schema = Yup.object().shape({
-      title: Yup.string().required(),
-      duration: Yup.number().required(),
-      price: Yup.number().required(),
-    });
-
-    if (!schema.isValid(req.body)) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
-
     const planExists = await Plan.findOne({ where: { title: req.body.title } });
 
     if (planExists) {
@@ -43,23 +31,6 @@ class PlanController {
     /*
      * Função que atualiza planos cadastrados com base no id
      */
-
-    const schemaBody = Yup.object().shape({
-      title: Yup.string(),
-      duration: Yup.number(),
-      price: Yup.number(),
-    });
-
-    const schemaParams = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (
-      !(await schemaBody.isValid(req.body)) ||
-      !(await schemaParams.isValid(req.params))
-    ) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const plan = await Plan.findByPk(req.params.id);
 
@@ -89,14 +60,6 @@ class PlanController {
     /*
      * Função que remove um plano a partir do seu id
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number(),
-    });
-
-    if (!schema.isValid(req.params)) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const plan = await Plan.findByPk(req.params.id);
 

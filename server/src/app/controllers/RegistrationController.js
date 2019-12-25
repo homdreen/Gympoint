@@ -1,5 +1,3 @@
-import * as Yup from 'yup';
-
 import { addMonths, parseISO } from 'date-fns';
 
 import Student from '../models/Student';
@@ -36,16 +34,6 @@ class RegistrationController {
     /*
      * Função que matricula um estudante de acordo com o plano escolhido
      */
-
-    const schema = Yup.object().shape({
-      student_id: Yup.number().required(),
-      plan_id: Yup.number().required(),
-      start_date: Yup.date().required(),
-    });
-
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { student_id, plan_id, start_date } = req.body;
 
@@ -109,24 +97,6 @@ class RegistrationController {
     /*
      * Função que altera uma matricula com base no id indicado
      */
-
-    const schemaBody = Yup.object().shape({
-      student_id: Yup.number().required(),
-      plan_id: Yup.number().required(),
-      start_date: Yup.date().required(),
-    });
-
-    const schemaParams = Yup.object().shape({
-      id: Yup.number(),
-    });
-
-    if (
-      !(await schemaBody.isValid(req.body)) ||
-      !(await schemaParams.isValid(req.params))
-    ) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
-
     const { student_id, plan_id, start_date } = req.body;
     const { id } = req.params;
 
@@ -190,15 +160,6 @@ class RegistrationController {
     /*
      * Função que remove uma matricula a partir id
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number(),
-    });
-
-    if (!schema.isValid(req.params)) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
-
     const registration = await Registration.findByPk(req.params.id);
 
     if (!registration) {

@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import { Op } from 'sequelize';
 
 import Student from '../models/Student';
@@ -34,21 +33,6 @@ class AnswerController {
     /*
      * Função para responder um auxilio
      */
-
-    const schemaBody = Yup.object().shape({
-      answer: Yup.string().required(),
-    });
-
-    const schemaParams = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (
-      !(await schemaBody.isValid(req.body)) ||
-      !(await schemaParams.isValid(req.params))
-    ) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
 

@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import { Op } from 'sequelize';
 
 import Student from '../models/Student';
@@ -31,20 +30,6 @@ class StudentsController {
      * Função que cadastra o aluno
      */
 
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      email: Yup.string()
-        .email()
-        .required(),
-      age: Yup.number().required(),
-      weight: Yup.number().required(),
-      height: Yup.number().required(),
-    });
-
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
-
     const { email } = req.body;
 
     const studentExists = await Student.findOne({ where: { email } });
@@ -62,27 +47,6 @@ class StudentsController {
     /*
      * Função que altera dados do aluno
      */
-
-    const schemaBody = Yup.object().shape({
-      name: Yup.string(),
-      email: Yup.string()
-        .email()
-        .required(),
-      age: Yup.number(),
-      weight: Yup.number(),
-      height: Yup.number(),
-    });
-
-    const schemaParams = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (
-      !(await schemaBody.isValid(req.body)) ||
-      !(await schemaParams.isValid(req.params))
-    ) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
     const { email } = req.body;
@@ -108,14 +72,6 @@ class StudentsController {
     /*
      * Função que remove um aluno a partir do seu id
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number(),
-    });
-
-    if (!schema.isValid(req.params)) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const student = await Student.findByPk(req.params.id);
 
