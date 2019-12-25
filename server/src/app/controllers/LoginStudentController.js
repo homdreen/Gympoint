@@ -1,5 +1,3 @@
-import * as Yup from 'yup';
-
 import Student from '../models/Student';
 
 class LoginStudentController {
@@ -7,14 +5,6 @@ class LoginStudentController {
     /**
      * Função que faz "login" de um aluno no aplicativo
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.body;
 

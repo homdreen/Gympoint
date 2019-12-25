@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import { Op } from 'sequelize';
 import { subDays } from 'date-fns';
 
@@ -10,14 +9,6 @@ class CheckinController {
     /*
      * Função que lista todos os checkins já feitos por um aluno
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (!(await schema.isValid(req.params))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
 
@@ -43,14 +34,6 @@ class CheckinController {
     /*
      * Função que cadastra novo checkin com base no id da matrícula
      */
-
-    const schema = Yup.object().shape({
-      id: Yup.number().required(),
-    });
-
-    if (!(await schema.isValid(req.params))) {
-      return res.status(400).json({ error: 'Validation Fails' });
-    }
 
     const { id } = req.params;
 
