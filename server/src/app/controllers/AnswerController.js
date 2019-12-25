@@ -24,6 +24,7 @@ class AnswerController {
           attributes: ['id', 'name', 'email'],
         },
       ],
+      order: [['createdAt', 'DESC']],
     });
 
     return res.status(200).json(helpOrders);
