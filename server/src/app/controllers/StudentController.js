@@ -2,6 +2,8 @@ import { Op } from 'sequelize';
 
 import Student from '../models/Student';
 
+import Cache from '../../lib/Cache';
+
 class StudentsController {
   async index(req, res) {
     /*
@@ -21,7 +23,16 @@ class StudentsController {
       return res.status(200).json({ students });
     }
 
+    const cached = await Cache.get('students');
+
+    if (cached) {
+      return res.status(200).json(cached);
+    }
+
     const students = await Student.findAll();
+
+    await Cache.set('students', students);
+
     return res.status(200).json({ students });
   }
 
@@ -39,6 +50,8 @@ class StudentsController {
     }
 
     const { id, name, age, weight, height } = await Student.create(req.body);
+
+    await Cache.invalidate('students');
 
     return res.status(200).json({ id, name, email, age, weight, height });
   }
