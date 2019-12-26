@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import Brute from 'express-brute';
+import BruteRedis from 'express-brute-redis';
 
 import authMiddleware from './app/middlewares/Auth';
 
@@ -27,10 +29,23 @@ import validateIdParam from './app/validators/ValidateIdParam';
 
 const routes = new Router();
 
+const bruteStore = new BruteRedis({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+});
+
+const bruteForce = new Brute(bruteStore);
+
 routes.get('/', (req, res) => res.json({ message: 'Welcome to Gympoint' }));
-routes.post('/sessions', validateSessionStore, SessionController.store);
+routes.post(
+  '/sessions',
+  bruteForce.prevent,
+  validateSessionStore,
+  SessionController.store
+);
 routes.post(
   '/login-students',
+  bruteForce.prevent,
   validateLoginStudentIndex,
   LoginStudentController.index
 );
