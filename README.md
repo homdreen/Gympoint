@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Gympoint 👋</h1>
+<h1 align="center">Bem-vindo ao Gympoint 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -10,17 +10,48 @@
 
 ### 🏠 [Homepage](https://github.com/homdreen/Gympoint)
 
-## Install
+## Instalação
+
+Antes de tudo, é necessário instalar os pacotes das dependências. Em cada pasta principal (server, mobile, web), instale os pacotes utilizando:
 
 ```sh
 yarn or npm install
 ```
 
-## Usage
+## Utilização
 
-```sh
-yarn dev (backend) || yarn queue (backend) || yarn start (web)
-```
+Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
+
+### Backend
+
+- Entre na pasta chamada `server`.
+- Copie o arquivo `.env.example` para `.env` e adicione as informações necessárias.
+- O sistema utiliza filas de execução para ordenar o envio de e-mails, para ativar estas filas utilize `yarn queue`.
+- Para colocar o sistema em funcionamento, execute o comando `yarn dev`.
+
+### Web
+
+- Na pasta `web`.
+- Se preferir, altere o endereço de loopback (localhost) no arquivo `./src/services/api.js` para um endereço IP válido em um rede NAT
+- Rode o frontend web através do comando `yarn start`.
+- Acesse através do navegador o endereço `http://localhost:3000`.
+
+### Mobile
+
+- Dentro da pasta `mobile`.
+- Como a versão mobile foi desenvolvida com **expo**, utilize o comando `expo start` (necessário estar instalada a expo-cli).
+- Utilize a camêra do celular para identificar o QRCode capaz de localizar o aplicativo rodando.
+
+### Containers
+
+O sistema faz uso de dois containers:
+
+- Postgres `docker run --name NOME_DO_CONTAINER -e POSTGRES_PASSWORD=SENHA_DO_CONTAINER -e POSTGRES_DB=NOME_DA_BASE_DE_DADOS -p 5432:5432 -d postgres`
+- Redis `docker run --name NOME_DO_CONTAINER -p 6379:6379 -d -t redis:alpine`
+
+As instruções de acesso devem ser inseridas no arquivo `.env` citado anteriormente.
+
+Para subir estes containers utilize `docker start NOME_DO_CONTAINER`.
 
 ## Author
 
@@ -28,11 +59,11 @@ yarn dev (backend) || yarn queue (backend) || yarn start (web)
 
 * Website: felipemelchior.com.br
 * Github: [@homdreen](https://github.com/homdreen)
-* LinkedIn: [@https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/)
+* LinkedIn: [@https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/](https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/)
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Considere deixar uma ⭐️ se este repositório te ajudou!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
