@@ -62,7 +62,7 @@ Para subir estes containers utilize `docker start NOME_DO_CONTAINER`.
 
 * Website: felipemelchior.com.br
 * Github: [@homdreen](https://github.com/homdreen)
-* LinkedIn: [@felipe-melchior-a9b99aa8](https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/)
+* LinkedIn: [@felipe-melchior](www.linkedin.com/in/felipe-melchior)
 
 ## Show your support
 
