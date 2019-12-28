@@ -6,7 +6,8 @@
   </a>
 </p>
 
-> Uma aplicação completa (backend, web e mobile) capaz de gerenciar academias. Desenvolvida para o Desafio Final do Bootcamp GoStack da Rocketseat.
+> Uma aplicação completa (backend, web e mobile) capaz de gerenciar academias. Desenvolvida para o Desafio Final do Bootcamp GoStack da **Rocketseat**. Utiliza Javascript como linguagem principal, sendo NodeJS para o código da API, ReactJS para a aplicação Web e React Native para a versão mobile.
+
 
 ### 🏠 [Homepage](https://github.com/homdreen/Gympoint)
 
@@ -28,6 +29,8 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 - Copie o arquivo `.env.example` para `.env` e adicione as informações necessárias.
 - O sistema utiliza filas de execução para ordenar o envio de e-mails, para ativar estas filas utilize `yarn queue`.
 - Para colocar o sistema em funcionamento, execute o comando `yarn dev`.
+
+> Caso queira visualizar todas as rotas disponibilizadas na API, importe o arquivo de workspace `gympoint_api.json` para o software **Insomnia**, disponível para download em [insonmia.rest](https://insonmia.rest). Necessário configurar o ambiente, dentro do Insomnia, as variáveis `baseURL` e `token` (este pode ser utilizado do retorno da rota `/sessions`).
 
 ### Web
 
@@ -59,7 +62,7 @@ Para subir estes containers utilize `docker start NOME_DO_CONTAINER`.
 
 * Website: felipemelchior.com.br
 * Github: [@homdreen](https://github.com/homdreen)
-* LinkedIn: [@https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/](https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/)
+* LinkedIn: [@felipe-melchior-a9b99aa8](https:\/\/www.linkedin.com\/in\/felipe-melchior-a9b99aa8\/)
 
 ## Show your support
 
