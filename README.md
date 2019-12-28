@@ -49,8 +49,8 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 
 O sistema faz uso de dois containers:
 
-- Postgres `docker run --name NOME_DO_CONTAINER -e POSTGRES_PASSWORD=SENHA_DO_CONTAINER -e POSTGRES_DB=NOME_DA_BASE_DE_DADOS -p 5432:5432 -d postgres`
-- Redis `docker run --name NOME_DO_CONTAINER -p 6379:6379 -d -t redis:alpine`
+- Postgres: `docker run --name NOME_DO_CONTAINER -e POSTGRES_PASSWORD=SENHA_DO_CONTAINER -e POSTGRES_DB=NOME_DA_BASE_DE_DADOS -p 5432:5432 -d postgres`
+- Redis: `docker run --name NOME_DO_CONTAINER -p 6379:6379 -d -t redis:alpine`
 
 As instruções de acesso devem ser inseridas no arquivo `.env` citado anteriormente.
 
