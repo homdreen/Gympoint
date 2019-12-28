@@ -42,6 +42,7 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 ### Mobile
 
 - Dentro da pasta `mobile`.
+- Altere o endereço de IP localizado no arquivo `./src/services/api.js`, para o IP que está hospedando o backend (API).
 - Como a versão mobile foi desenvolvida com **expo**, utilize o comando `expo start` (necessário estar instalada a expo-cli).
 - Utilize a camêra do celular para identificar o QRCode capaz de localizar o aplicativo rodando.
 
