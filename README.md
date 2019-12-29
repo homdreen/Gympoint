@@ -27,6 +27,8 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 
 - Entre na pasta chamada `server`.
 - Copie o arquivo `.env.example` para `.env` e adicione as informações necessárias.
+- Crie as tabelas do banco de dados com o comando `yarn sequelize db:migrate`.
+- Crie o usuário **Administrador** executando `yarn sequelize db:seed:all`.
 - O sistema utiliza filas de execução para ordenar o envio de e-mails, para ativar estas filas utilize `yarn queue`.
 - Para colocar o sistema em funcionamento, execute o comando `yarn dev`.
 
