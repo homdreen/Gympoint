@@ -25,15 +25,21 @@ export default function Header() {
             <img src={logoGympoint} alt="Logo Gympoint" />
           </div>
 
-          <LinkElement to="/dashboard" active="true">
+          <LinkElement to="/dashboard" activeStyle={{ color: '#444' }}>
             ALUNOS
           </LinkElement>
 
-          <LinkElement to="/plans">PLANOS</LinkElement>
+          <LinkElement to="/plans" activeStyle={{ color: '#444' }}>
+            PLANOS
+          </LinkElement>
 
-          <LinkElement to="/registrations">MATRÍCULAS</LinkElement>
+          <LinkElement to="/registrations" activeStyle={{ color: '#444' }}>
+            MATRÍCULAS
+          </LinkElement>
 
-          <LinkElement to="/help-orders">PEDIDOS DE AUXÍLIO</LinkElement>
+          <LinkElement to="/help-orders" activeStyle={{ color: '#444' }}>
+            PEDIDOS DE AUXÍLIO
+          </LinkElement>
         </nav>
 
         <aside>

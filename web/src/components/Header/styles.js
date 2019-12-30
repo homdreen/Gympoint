@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   background: #fff;
@@ -79,9 +79,9 @@ export const Content = styled.div`
   }
 `;
 
-export const LinkElement = styled(Link)`
+export const LinkElement = styled(NavLink)`
   margin-right: 20px;
-  color: ${props => (props.active ? '#444' : '#999')};
+  color: #999;
   font-size: 15px;
   font-weight: bold;
   transition: color 0.2s;
