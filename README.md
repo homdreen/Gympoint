@@ -25,7 +25,7 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 
 ### Backend
 
-- Entre na pasta chamada `server`.
+- Entre na pasta chamada `backend`.
 - Copie o arquivo `.env.example` para `.env` e adicione as informações necessárias.
 - Crie as tabelas do banco de dados com o comando `yarn sequelize db:migrate`.
 - Crie o usuário **Administrador** executando `yarn sequelize db:seed:all`.
@@ -36,7 +36,7 @@ Para rodar o aplicativo em modo de desenvolvimento, siga os seguintes passos:
 
 ### Web
 
-- Na pasta `web`.
+- Na pasta `frontend`.
 - Se preferir, altere o endereço de loopback (localhost) no arquivo `./src/services/api.js` para um endereço IP válido em um rede NAT
 - Rode o frontend web através do comando `yarn start`.
 - Acesse através do navegador o endereço `http://localhost:3000`.
