@@ -64,7 +64,7 @@ Para subir estes containers utilize `docker start NOME_DO_CONTAINER`.
 👤 **Felipe Homrich Melchior**
 
 * Website: felipemelchior.com.br
-* Github: [@homdreen](https://github.com/homdreen)
+* Github: [@felipemelchior](https://github.com/felipemelchior)
 * LinkedIn: [@felipe-melchior](www.linkedin.com/in/felipe-melchior)
 
 ## Mostre seu apoio
